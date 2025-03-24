@@ -1,36 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
+import pokemons from './assets/pokemons'
+import PokemonCard from './assets/components/pokemonCard'
+import SearchBar from './assets/components/searchBar'
 import './App.css'
-import Header from './components/header'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [search, setSearch] = useState("")
+  const [types, setTypes] = useState([])
+
+  useEffect(() => {
+    console.log(search)
+    console.log('types', types)
+  }, [search, types])
 
   return (
-    <>
-    <Header/>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app-container">
+      <SearchBar types={types} setTypes={setTypes} search={search} setSearch={setSearch}/>
+
+      <div className="pokemon-list">
+        {pokemons.map((pokemon) => {
+          const isTypeIncluded = types.length === 0 || types.every(type => pokemon.type.includes(type))
+          const isNameIncluded = search === "" || pokemon.name.french.toLowerCase().includes(search.toLowerCase())
+
+          if (!isNameIncluded || !isTypeIncluded) {
+            return null
+          }
+          
+          return (
+            <div key={pokemon.id} className="pokemon-card-container">
+              <PokemonCard 
+                name={pokemon.name.french} 
+                types={pokemon.type} 
+                image={pokemon.image}
+                shinyImage={pokemon.imageShiny}
+                attack={pokemon.base.Attack}
+                defense={pokemon.base.Defense}
+                hp={pokemon.base.HP}
+              />
+            </div>
+          )
+        })}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
