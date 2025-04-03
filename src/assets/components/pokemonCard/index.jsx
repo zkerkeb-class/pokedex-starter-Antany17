@@ -1,19 +1,26 @@
 import { useState } from "react";
 import "./index.css";
+import {useNavigate} from "react-router"
 
-const PokemonCard = ({ name, types, image, shinyImage, attack, defense, hp }) => {
-  const [currentHP, setCurrentHP] = useState(hp);
+const PokemonCard = ({ id,name, types, image, shinyImage, attack, defense, hp }) => {
   const [currentImage, setCurrentImage] = useState(image);
   const [isShiny, setIsShiny] = useState(false);
+  const navigate = useNavigate();
 
   const handleToggleImage = () => {
     if (isShiny) {
       setCurrentImage(image); // Affiche l'image classique
     } else {
       setCurrentImage(shinyImage); // Affiche l'image Shiny
+      console.log(image)
     }
     setIsShiny(!isShiny); // Inverse l'état
   };
+
+  const goToPokemon = () => {
+    console.log("🚀 ~ goToPokemon ~ id:", id)
+    navigate(`/pokemon/${id}`)
+  }
 
   return (
     <div className="pokemon-card">
@@ -29,10 +36,13 @@ const PokemonCard = ({ name, types, image, shinyImage, attack, defense, hp }) =>
       <div className="pokemon-stats-container">
         <span>Attack: {attack}</span>
         <span>Defense: {defense}</span>
-        <span>HP: {currentHP}</span>
+        <span>HP: {hp}</span>
       </div>
       <button onClick={handleToggleImage}>
         {isShiny ? "Voir la version Classique" : "Voir la version Shiny"}
+      </button>
+      <button onClick={goToPokemon}>
+        Voir pokemon en détail
       </button>
     </div>
   );

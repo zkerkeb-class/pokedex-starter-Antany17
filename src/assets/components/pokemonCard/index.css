@@ -1,8 +1,8 @@
 .pokemon-card{
-    border: 1px solid #d4d0d7;
+    border: 2px solid white;
     padding: 10px;
-
-    border-radius: 8px;
+    margin: 10px;
+    border-radius: 0px;
     display: flex;
     flex-direction: column;
 }
@@ -25,6 +25,8 @@ align-items: center;
 
 .pokemon-types-container{
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
     
 }
 

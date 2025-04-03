@@ -5,22 +5,26 @@ const typesList = [
     "Flying", "Ghost", "Grass", "Ground", "Ice", "Normal", "Poison",
     "Psychic", "Rock", "Steel", "Water"
 ];
+
 const SearchBar = ({ search, setSearch, types, setTypes }) => {
   return (
-    <div>
-      <input
-        value={search}
-        onChange={(e) => {
-            setSearch(e.target.value)
-        }}
-        type="text"
-        placeholder="Rechercher un pokemon"
-        className="search-bar"
-      />
-      <div>
+    <div className="search-container">
+      <div className="search-input-container">
+        <i className="fas fa-search search-icon"></i>
+        <input
+          value={search}
+          onChange={(e) => {
+              setSearch(e.target.value)
+          }}
+          type="text"
+          placeholder="Rechercher un pokemon..."
+          className="search-bar"
+        />
+      </div>
+      <div className="types-container">
         {typesList.map((type) => {
             return <button 
-            className={types.includes(type) ? 'active' : ''}
+            className={`type-button ${types.includes(type) ? 'active' : ''}`}
             onClick={() => {
               if(types.includes(type)){
                 setTypes(types.filter((t) => t !== type))
