@@ -5,22 +5,39 @@
     border-radius: 0px;
     display: flex;
     flex-direction: column;
+    width: 250px;
+    box-sizing: border-box;
+    position: relative;
+    gap: 10px;
+}
+
+.pokemon-card.shiny {
+    border: 2px solid #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.pokemon-card.shiny .pokemon-name {
+    color: #FFD700;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
 }
 
 .pokemon-name{
     font-size: 20px;
     font-weight: bold;
+    transition: all 0.3s ease;
 }
 
 .pokemon-name-container{
-display: flex;
-justify-content: flex-start;
-align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .pokemon-image{
     width: 200px;
     height: 200px;
+    object-fit: contain;
+    margin: 0 auto;
 }
 
 .pokemon-types-container{

@@ -21,16 +21,20 @@ const PokemonCard = ({ id,name, types, image, shinyImage, attack, defense, hp })
     console.log("🚀 ~ goToPokemon ~ id:", id)
     navigate(`/pokemon/${id}`)
   }
+  const getTypeClass = (type) => {
+    return `type-name type-${type.toLowerCase()}`;
+  };
+
 
   return (
-    <div className="pokemon-card">
+    <div className={`pokemon-card ${isShiny ? 'shiny' : ''}`}>
       <div className="pokemon-name-container">
         <span className="pokemon-name">{name}</span>
       </div>
       <img className="pokemon-image" src={currentImage} alt={name} />
-      <div className="pokemon-types-container">
+      <div className="pokemon-types">
         {types.map((type) => (
-          <span key={type}>{type}</span>
+          <span key={type} className={getTypeClass(type)}>{type}</span>
         ))}
       </div>
       <div className="pokemon-stats-container">
