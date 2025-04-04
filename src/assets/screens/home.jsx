@@ -41,7 +41,7 @@ function Home() {
         return (
           <div key={pokemon.id} className="pokemon-card-container">
           <PokemonCard 
-          id={pokemon.id}
+          id={pokemon._id}
           name={pokemon.name.french} 
           types={pokemon.type} 
           image={pokemon.image}

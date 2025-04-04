@@ -23,15 +23,15 @@ const Pokemon = () => {
 
     const deletePokemon = () => {
         if(window.confirm("Voulez-vous vraiment supprimer ce pokemon ?")){
-            axios.delete(`http://localhost:3000/api/pokemons/${id}`).then(
-                (response) => {
-                    alert("Pokemon supprimé avec succès")
-                    navigate("/")
-                }
-            ).catch((error) => {
-                alert("Erreur lors de la suppression du pokemon")
-                console.log("🚀 ~ Pokemon ~ error:", error)
-            })
+        axios.delete(`http://localhost:3000/api/pokemons/${id}`).then(
+            (response) => {
+                alert("Pokemon supprimé avec succès")
+                navigate("/")
+            }
+        ).catch((error) => {
+            alert("Erreur lors de la suppression du pokemon")
+            console.log("🚀 ~ Pokemon ~ error:", error)
+        })
         }
     }
 
@@ -206,7 +206,7 @@ const Pokemon = () => {
                     </div>
                     <div className="name-row">
                         <span>Chinois:</span>
-                        {isEditing ? (
+            {isEditing ? (
                             <input 
                                 type="text" 
                                 value={pokemon.name?.chinese || ''} 
