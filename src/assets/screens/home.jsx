@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 // import pokemons from '../assets/pokemons'
 import PokemonCard from '../components/pokemonCard'
 import SearchBar from '../components/searchBar'
@@ -9,6 +10,7 @@ function Home() {
   const [pokemons, setPokemons] = useState([])
   const [search, setSearch] = useState("")
   const [types, setTypes] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios.get("http://localhost:3000/api/pokemons").then(
@@ -28,29 +30,44 @@ function Home() {
 
   return (
     <div className="app-container">
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
+        <button 
+          onClick={() => navigate('/favorites')}
+          style={{
+            padding: '5px 10px',
+            backgroundColor: '#ffd700',
+            border: 'none',
+            color: '#333',
+            cursor: 'pointer'
+          }}
+        >
+          Favoris
+        </button>
+      </div>
+
       <SearchBar types={types} setTypes={setTypes} search={search} setSearch={setSearch}/>
 
-    <div className="pokemon-list">
-      {pokemons.map((pokemon) => {
-        const isTypeIncluded = types.length === 0 || types.every(type => pokemon.type.includes(type))
-        const isNameIncluded = search === "" || pokemon.name.french.toLowerCase().includes(search.toLowerCase())
+      <div className="pokemon-list">
+        {pokemons.map((pokemon) => {
+          const isTypeIncluded = types.length === 0 || types.every(type => pokemon.type.includes(type))
+          const isNameIncluded = search === "" || pokemon.name.french.toLowerCase().includes(search.toLowerCase())
 
-        if(!isNameIncluded || !isTypeIncluded){
-          return null
-        }
-        
-        return (
-          <div key={pokemon.id} className="pokemon-card-container">
-          <PokemonCard 
-          id={pokemon._id}
-          name={pokemon.name.french} 
-          types={pokemon.type} 
-          image={pokemon.image}
-          shinyImage={pokemon.imageShiny}
-          attack={pokemon.base.Attack}
-          defense={pokemon.base.Defense}
-          hp={pokemon.base.HP}
-        />
+          if(!isNameIncluded || !isTypeIncluded){
+            return null
+          }
+          
+          return (
+            <div key={pokemon.id} className="pokemon-card-container">
+            <PokemonCard 
+            id={pokemon._id}
+            name={pokemon.name.french} 
+            types={pokemon.type} 
+            image={pokemon.image}
+            shinyImage={pokemon.imageShiny}
+            attack={pokemon.base.Attack}
+            defense={pokemon.base.Defense}
+            hp={pokemon.base.HP}
+          />
         </div>
         )
       })}

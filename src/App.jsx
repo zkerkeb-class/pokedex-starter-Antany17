@@ -1,25 +1,20 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './assets/screens/home'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './assets/screens/home';
+import Favorites from './assets/screens/favorites';
 import Pokemon from './assets/screens/pokemon'
 import Login from './assets/screens/login'
 
-const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <Login />
-    },
-    {
-        path: '/home',
-        element: <Home />
-    },
-    {
-        path: '/pokemon/:id',
-        element: <Pokemon />
-    }
-])
-
-const App = () => {
-    return <RouterProvider router={router} />
+function App() {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/favorites" element={<Favorites />} />
+                <Route path="/pokemon/:id" element={<Pokemon />} />
+            </Routes>
+        </Router>
+    );
 }
 
-export default App
+export default App;
