@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+// import pokemons from '../assets/pokemons'
 import PokemonCard from '../components/pokemonCard'
 import SearchBar from '../components/searchBar'
 import './home.css'
@@ -28,7 +29,7 @@ function Home() {
   return (
     <div className="app-container">
       <SearchBar types={types} setTypes={setTypes} search={search} setSearch={setSearch}/>
-    
+
     <div className="pokemon-list">
       {pokemons.map((pokemon) => {
         const isTypeIncluded = types.length === 0 || types.every(type => pokemon.type.includes(type))

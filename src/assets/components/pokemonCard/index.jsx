@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./index.css";
 import {useNavigate} from "react-router"
+import FavoriteButton from "../favoriteButton";
 
 const PokemonCard = ({ id,name, types, image, shinyImage, attack, defense, hp }) => {
   const [currentImage, setCurrentImage] = useState(image);
@@ -28,6 +29,7 @@ const PokemonCard = ({ id,name, types, image, shinyImage, attack, defense, hp })
 
   return (
     <div className={`pokemon-card ${isShiny ? 'shiny' : ''}`}>
+      <FavoriteButton pokemonId={id} />
       <div className="pokemon-name-container">
         <span className="pokemon-name">{name}</span>
       </div>
@@ -42,12 +44,14 @@ const PokemonCard = ({ id,name, types, image, shinyImage, attack, defense, hp })
         <span>Defense: {defense}</span>
         <span>HP: {hp}</span>
       </div>
-      <button onClick={handleToggleImage}>
-        {isShiny ? "Voir la version Classique" : "Voir la version Shiny"}
-      </button>
-      <button onClick={goToPokemon}>
-        Voir pokemon en détail
-      </button>
+      <div className="action-buttons">
+        <button className="action-button shiny-button" onClick={handleToggleImage}>
+          {isShiny ? "Voir la version Classique" : "Voir la version Shiny"}
+        </button>
+        <button className="action-button" onClick={goToPokemon}>
+          Voir pokemon en détail
+        </button>
+      </div>
     </div>
   );
 };
