@@ -39,6 +39,19 @@ function Home() {
     <div className="app-container">
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
         <button 
+          onClick={() => navigate('/favorites')}
+          style={{
+            padding: '5px 10px',
+            backgroundColor: '#ffd700',
+            border: 'none',
+            color: '#333',
+            cursor: 'pointer',
+            borderRadius: '4px'
+          }}
+        >
+          Favoris
+        </button>
+        <button 
           onClick={handleLogout}
           style={{
             padding: '5px 10px',
