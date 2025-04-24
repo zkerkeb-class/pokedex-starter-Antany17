@@ -29,7 +29,7 @@ const PokemonCard = ({ id,name, types, image, shinyImage, attack, defense, hp })
 
   return (
     <div className={`pokemon-card ${isShiny ? 'shiny' : ''}`}>
-      <FavoriteButton pokemonId={id} />
+      <FavoriteButton id={id} />
       <div className="pokemon-name-container">
         <span className="pokemon-name">{name}</span>
       </div>

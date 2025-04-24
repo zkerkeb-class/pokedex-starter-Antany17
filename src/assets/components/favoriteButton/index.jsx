@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import './index.css';
 
-const FavoriteButton = ({ pokemonId }) => {
+const FavoriteButton = ({ id }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     // Vérifier si le Pokémon est dans les favoris au chargement
     checkFavoriteStatus();
-  }, [pokemonId]);
+  }, [id]);
 
   const checkFavoriteStatus = async () => {
     try {
@@ -19,7 +19,7 @@ const FavoriteButton = ({ pokemonId }) => {
         }
       });
       const data = await response.json();
-      setIsFavorite(data.favorites.includes(pokemonId));
+      setIsFavorite(data.favorites.includes(id));
     } catch (error) {
       console.error('Erreur lors de la vérification des favoris:', error);
     }
@@ -38,7 +38,7 @@ const FavoriteButton = ({ pokemonId }) => {
 
       if (isFavorite) {
         // Supprimer des favoris
-        await fetch(`http://localhost:3000/api/favorites/${pokemonId}`, {
+        await fetch(`http://localhost:3000/api/favorites/${id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -52,7 +52,7 @@ const FavoriteButton = ({ pokemonId }) => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
           },
-          body: JSON.stringify({ pokemonId })
+          body: JSON.stringify({ pokemonId: id })
         });
       }
 

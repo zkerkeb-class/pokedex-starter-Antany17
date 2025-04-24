@@ -28,20 +28,28 @@ function Home() {
     console.log('types', types)
   }, [search, types])
 
+  const handleLogout = () => {
+    // Supprimer le token du localStorage
+    localStorage.removeItem('token');
+    // Rediriger vers la page de connexion
+    navigate('/');
+  };
+
   return (
     <div className="app-container">
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
         <button 
-          onClick={() => navigate('/favorites')}
+          onClick={handleLogout}
           style={{
             padding: '5px 10px',
-            backgroundColor: '#ffd700',
+            backgroundColor: '#ff4444',
             border: 'none',
-            color: '#333',
-            cursor: 'pointer'
+            color: 'white',
+            cursor: 'pointer',
+            borderRadius: '4px'
           }}
         >
-          Favoris
+          Déconnexion
         </button>
       </div>
 
@@ -58,20 +66,20 @@ function Home() {
           
           return (
             <div key={pokemon.id} className="pokemon-card-container">
-            <PokemonCard 
-            id={pokemon._id}
-            name={pokemon.name.french} 
-            types={pokemon.type} 
-            image={pokemon.image}
-            shinyImage={pokemon.imageShiny}
-            attack={pokemon.base.Attack}
-            defense={pokemon.base.Defense}
-            hp={pokemon.base.HP}
-          />
-        </div>
-        )
-      })}
-    </div>
+              <PokemonCard 
+                id={pokemon._id}
+                name={pokemon.name.french} 
+                types={pokemon.type} 
+                image={pokemon.image}
+                shinyImage={pokemon.imageShiny}
+                attack={pokemon.base.Attack}
+                defense={pokemon.base.Defense}
+                hp={pokemon.base.HP}
+              />
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }

@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './assets/screens/home';
-import Favorites from './assets/screens/favorites';
 import Pokemon from './assets/screens/pokemon'
 import Login from './assets/screens/login'
 
@@ -10,7 +9,6 @@ function App() {
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route path="/home" element={<Home />} />
-                <Route path="/favorites" element={<Favorites />} />
                 <Route path="/pokemon/:id" element={<Pokemon />} />
             </Routes>
         </Router>
