@@ -23,7 +23,7 @@ const Register = () => {
             })
 
             // Redirection vers la page de connexion après inscription réussie
-            navigate('/login')
+            navigate('/')
         } catch (err) {
             setError(err.response?.data?.message || "Une erreur est survenue lors de l'inscription")
         } finally {
