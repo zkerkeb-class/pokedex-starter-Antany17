@@ -44,7 +44,6 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    
 }
 
 .pokemon-types-container > *:not(:first-child) {
@@ -106,4 +105,5 @@
     width: 20px;
     height: 20px;
     cursor: pointer;
+    accent-color: #FFD700;
 }

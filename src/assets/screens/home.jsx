@@ -46,18 +46,21 @@ function Home() {
       return
     }
 
-    const pokemon1 = pokemons.find(p => p.id === selectedPokemons[0])
-    const pokemon2 = pokemons.find(p => p.id === selectedPokemons[1])
+    const pokemon1 = pokemons.find(p => p._id === selectedPokemons[0])
+    const pokemon2 = pokemons.find(p => p._id === selectedPokemons[1])
+
+    if (!pokemon1 || !pokemon2) {
+      alert("Erreur lors de la sélection des Pokémon")
+      return
+    }
 
     navigate('/compare', { state: { pokemon1, pokemon2 } })
   }
 
   const handleLogout = () => {
-    // Supprimer le token du localStorage
-    localStorage.removeItem('token');
-    // Rediriger vers la page de connexion
-    navigate('/');
-  };
+    localStorage.removeItem('token')
+    navigate('/')
+  }
 
   return (
     <div className="app-container">
@@ -107,7 +110,7 @@ function Home() {
         </button>
       </div>
 
-      <SearchBar types={types} setTypes={setTypes} search={search} setSearch={setSearch}/>
+      <SearchBar onSearch={setSearch} onTypeSelect={setTypes} />
 
       <div className="pokemon-list">
         {pokemons.map((pokemon) => {
@@ -119,7 +122,7 @@ function Home() {
           }
           
           return (
-            <div key={pokemon.id} className="pokemon-card-container">
+            <div key={pokemon._id} className="pokemon-card-container">
               <PokemonCard 
                 id={pokemon._id}
                 name={pokemon.name.french} 
@@ -129,7 +132,7 @@ function Home() {
                 attack={pokemon.base.Attack}
                 defense={pokemon.base.Defense}
                 hp={pokemon.base.HP}
-                isSelected={selectedPokemons.includes(pokemon.id)}
+                isSelected={selectedPokemons.includes(pokemon._id)}
                 onSelect={handleSelectPokemon}
               />
             </div>

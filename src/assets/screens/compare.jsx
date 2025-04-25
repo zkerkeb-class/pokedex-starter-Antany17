@@ -22,22 +22,22 @@ const Compare = () => {
             <h1>Comparaison de Pokémon</h1>
             <div className="compare-pokemons">
                 <div className="pokemon-card">
-                    <h2>{pokemon1.name}</h2>
-                    <img src={pokemon1.image} alt={pokemon1.name} />
+                    <h2>{pokemon1.name.french}</h2>
+                    <img src={pokemon1.image} alt={pokemon1.name.french} />
                     <div className="pokemon-stats">
-                        <p>HP: {pokemon1.hp}</p>
-                        <p>Attack: {pokemon1.attack}</p>
-                        <p>Defense: {pokemon1.defense}</p>
+                        <p>HP: {pokemon1.base.HP}</p>
+                        <p>Attack: {pokemon1.base.Attack}</p>
+                        <p>Defense: {pokemon1.base.Defense}</p>
                     </div>
                 </div>
                 <div className="vs">VS</div>
                 <div className="pokemon-card">
-                    <h2>{pokemon2.name}</h2>
-                    <img src={pokemon2.image} alt={pokemon2.name} />
+                    <h2>{pokemon2.name.french}</h2>
+                    <img src={pokemon2.image} alt={pokemon2.name.french} />
                     <div className="pokemon-stats">
-                        <p>HP: {pokemon2.hp}</p>
-                        <p>Attack: {pokemon2.attack}</p>
-                        <p>Defense: {pokemon2.defense}</p>
+                        <p>HP: {pokemon2.base.HP}</p>
+                        <p>Attack: {pokemon2.base.Attack}</p>
+                        <p>Defense: {pokemon2.base.Defense}</p>
                     </div>
                 </div>
             </div>
