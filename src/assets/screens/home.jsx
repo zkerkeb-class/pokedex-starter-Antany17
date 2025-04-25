@@ -110,7 +110,7 @@ function Home() {
         </button>
       </div>
 
-      <SearchBar onSearch={setSearch} onTypeSelect={setTypes} />
+      <SearchBar types={types} setTypes={setTypes} search={search} setSearch={setSearch} />
 
       <div className="pokemon-list">
         {pokemons.map((pokemon) => {
