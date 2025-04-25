@@ -9,7 +9,8 @@
     box-sizing: border-box;
     position: relative;
     gap: 10px;
-    background-color: #1a1a1a;
+    background-color: #1a1a1a !important;
+    color: white;
 }
 
 .pokemon-card.shiny {
@@ -109,4 +110,9 @@
     height: 20px;
     cursor: pointer;
     accent-color: #FFD700;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
