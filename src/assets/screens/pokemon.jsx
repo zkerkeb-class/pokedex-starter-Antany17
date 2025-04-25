@@ -1,3 +1,8 @@
+/**
+ * Pokemon.jsx - Page de détail d'un Pokémon
+ * Affiche les informations détaillées d'un Pokémon avec possibilité de modification
+ */
+
 import { useParams } from "react-router";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -5,11 +10,15 @@ import { useNavigate } from "react-router";
 import "./pokemon.css";
 
 const Pokemon = () => {
-    const [pokemon, setPokemon] = useState({});
-    const [isEditing, setIsEditing] = useState(false);
-    const {id} = useParams();
+    // États pour gérer les données et l'interface
+    const [pokemon, setPokemon] = useState({});         // Données du Pokémon
+    const [isEditing, setIsEditing] = useState(false);  // Mode édition
+    const {id} = useParams();                          // ID du Pokémon depuis l'URL
     const navigate = useNavigate();
 
+    /**
+     * Charge les données du Pokémon au montage du composant
+     */
     useEffect(() => {
         axios.get(`http://localhost:3000/api/pokemons/${id}`).then(
             (response) => {
@@ -21,20 +30,26 @@ const Pokemon = () => {
         })
     },[])
 
+    /**
+     * Supprime le Pokémon
+     */
     const deletePokemon = () => {
         if(window.confirm("Voulez-vous vraiment supprimer ce pokemon ?")){
-        axios.delete(`http://localhost:3000/api/pokemons/${id}`).then(
-            (response) => {
-                alert("Pokemon supprimé avec succès")
-                navigate("/home")
-            }
-        ).catch((error) => {
-            alert("Erreur lors de la suppression du pokemon")
-            console.log("🚀 ~ Pokemon ~ error:", error)
-        })
+            axios.delete(`http://localhost:3000/api/pokemons/${id}`).then(
+                (response) => {
+                    alert("Pokemon supprimé avec succès")
+                    navigate("/home")
+                }
+            ).catch((error) => {
+                alert("Erreur lors de la suppression du pokemon")
+                console.log("🚀 ~ Pokemon ~ error:", error)
+            })
         }
     }
 
+    /**
+     * Met à jour les données du Pokémon
+     */
     const editPokemon = () => {
         axios.put(`http://localhost:3000/api/pokemons/${id}`,pokemon).then(
             (response) => {
@@ -47,12 +62,20 @@ const Pokemon = () => {
         })
     }
 
-    // Fonction pour obtenir la classe CSS en fonction du type
+    /**
+     * Retourne la classe CSS correspondant au type du Pokémon
+     * @param {string} type - Type du Pokémon
+     * @returns {string} - Classe CSS
+     */
     const getTypeClass = (type) => {
         return `type-name type-${type.toLowerCase()}`;
     };
 
-    // Fonction pour mettre à jour les statistiques
+    /**
+     * Met à jour une statistique du Pokémon
+     * @param {string} stat - Nom de la statistique
+     * @param {string} value - Nouvelle valeur
+     */
     const updateBaseStat = (stat, value) => {
         setPokemon({
             ...pokemon,
@@ -63,7 +86,11 @@ const Pokemon = () => {
         });
     };
 
-    // Fonction pour mettre à jour les noms
+    /**
+     * Met à jour le nom du Pokémon dans une langue spécifique
+     * @param {string} language - Langue du nom
+     * @param {string} value - Nouveau nom
+     */
     const updateName = (language, value) => {
         setPokemon({
             ...pokemon,
@@ -76,6 +103,7 @@ const Pokemon = () => {
 
     return (
         <div className="pokemon-detail-container">
+            {/* Bouton de retour */}
             <div className="pokemon-header">
                 <button 
                     onClick={() => navigate('/home')}
@@ -88,6 +116,8 @@ const Pokemon = () => {
                     Retour
                 </button>
             </div>
+
+            {/* Section image et actions */}
             <div className="pokemon-image-container">
                 <img src={pokemon.image} alt={pokemon.name?.french} className="pokemon-detail-image" />
                 <div className="pokemon-actions">
@@ -100,13 +130,19 @@ const Pokemon = () => {
                     )}
                 </div>
             </div>
+
+            {/* Section informations */}
             <div className="pokemon-info-container">
                 <h1>{pokemon.name?.french}</h1>
+                
+                {/* Types du Pokémon */}
                 <div className="pokemon-types">
                     {pokemon.type?.map((type) => (
                         <span key={type} className={getTypeClass(type)}>{type}</span>
                     ))}
                 </div>
+
+                {/* Statistiques du Pokémon */}
                 <div className="pokemon-stats">
                     <h2>Statistiques</h2>
                     <div className="stat-row">
@@ -188,6 +224,8 @@ const Pokemon = () => {
                         )}
                     </div>
                 </div>
+
+                {/* Noms dans différentes langues */}
                 <div className="pokemon-names">
                     <h2>Noms dans différentes langues</h2>
                     <div className="name-row">
@@ -218,7 +256,7 @@ const Pokemon = () => {
                     </div>
                     <div className="name-row">
                         <span>Chinois:</span>
-            {isEditing ? (
+                        {isEditing ? (
                             <input 
                                 type="text" 
                                 value={pokemon.name?.chinese || ''} 

@@ -1,3 +1,8 @@
+/**
+ * Favorites/index.jsx - Page des Pokémon favoris
+ * Affiche la liste des Pokémon marqués comme favoris par l'utilisateur
+ */
+
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PokemonCard from '../../components/pokemonCard'
@@ -5,9 +10,13 @@ import './index.css'
 import axios from 'axios'
 
 function Favorites() {
-  const [pokemons, setPokemons] = useState([])
+  // États pour gérer les données
+  const [pokemons, setPokemons] = useState([])  // Liste des Pokémon favoris
   const navigate = useNavigate()
 
+  /**
+   * Charge les Pokémon favoris au montage du composant
+   */
   useEffect(() => {
     // Récupérer les pokémons favoris depuis l'API
     axios.get("http://localhost:3000/api/favorites", {
@@ -45,6 +54,7 @@ function Favorites() {
 
   return (
     <div className="app-container">
+      {/* En-tête avec titre et bouton de retour */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
         <h1>Mes Favoris</h1>
         <button 
@@ -61,11 +71,13 @@ function Favorites() {
         </button>
       </div>
 
+      {/* Message si aucun favori */}
       {pokemons.length === 0 ? (
         <div style={{ textAlign: 'center', padding: '20px' }}>
           <p>Vous n'avez pas encore de Pokémon favoris</p>
         </div>
       ) : (
+        /* Liste des Pokémon favoris */
         <div className="pokemon-list">
           {pokemons.map((pokemon) => (
             <div key={pokemon.id} className="pokemon-card-container">

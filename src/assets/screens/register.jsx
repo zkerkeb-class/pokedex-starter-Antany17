@@ -1,15 +1,25 @@
+/**
+ * Register.jsx - Page d'inscription
+ * Permet aux utilisateurs de créer un nouveau compte
+ */
+
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import './login.css'
 
 const Register = () => {
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const [error, setError] = useState("")
-    const [loading, setLoading] = useState(false)
+    // États pour gérer le formulaire et l'interface
+    const [username, setUsername] = useState("")        // Nom d'utilisateur
+    const [password, setPassword] = useState("")        // Mot de passe
+    const [error, setError] = useState("")             // Message d'erreur
+    const [loading, setLoading] = useState(false)      // État de chargement
     const navigate = useNavigate()
 
+    /**
+     * Gère la soumission du formulaire d'inscription
+     * @param {Event} e - Événement de soumission du formulaire
+     */
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
@@ -36,6 +46,7 @@ const Register = () => {
             <div className="login-card">
                 <h1>Créer un compte</h1>
                 <form onSubmit={handleSubmit}>
+                    {/* Champ nom d'utilisateur */}
                     <div className="form-group">
                         <label htmlFor="username">Nom d'utilisateur</label>
                         <input
@@ -46,6 +57,8 @@ const Register = () => {
                             required
                         />
                     </div>
+
+                    {/* Champ mot de passe */}
                     <div className="form-group">
                         <label htmlFor="password">Mot de passe</label>
                         <input
@@ -56,10 +69,16 @@ const Register = () => {
                             required
                         />
                     </div>
+
+                    {/* Affichage des erreurs */}
                     {error && <div className="error-message">{error}</div>}
+
+                    {/* Bouton d'inscription */}
                     <button type="submit" disabled={loading}>
                         {loading ? 'Inscription en cours...' : 'S\'inscrire'}
                     </button>
+
+                    {/* Lien vers la page de connexion */}
                     <div className="register-link">
                         <p>Déjà un compte ?</p>
                         <button onClick={() => navigate('/login')}>Se connecter</button>

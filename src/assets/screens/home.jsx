@@ -1,3 +1,8 @@
+/**
+ * Home.jsx - Page d'accueil de l'application
+ * Affiche la liste des pokémons avec des fonctionnalités de recherche et de comparaison
+ */
+
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 // import pokemons from '../assets/pokemons'
@@ -7,12 +12,14 @@ import './home.css'
 import axios from 'axios'
 
 function Home() {
-  const [pokemons, setPokemons] = useState([])
-  const [search, setSearch] = useState("")
-  const [types, setTypes] = useState([])
-  const [selectedPokemons, setSelectedPokemons] = useState([])
+  // États pour gérer les données et l'interface
+  const [pokemons, setPokemons] = useState([])        // Liste des pokémons
+  const [search, setSearch] = useState("")            // Terme de recherche
+  const [types, setTypes] = useState([])             // Types sélectionnés
+  const [selectedPokemons, setSelectedPokemons] = useState([]) // Pokémons sélectionnés pour comparaison
   const navigate = useNavigate()
 
+  // Chargement initial des pokémons
   useEffect(() => {
     axios.get("http://localhost:3000/api/pokemons").then(
       (response) => {
@@ -24,11 +31,16 @@ function Home() {
     })
   }, [])
 
+  // Log des changements de recherche et types (débogage)
   useEffect(() => {
     console.log(search)
     console.log('types', types)
   }, [search, types])
 
+  /**
+   * Gère la sélection/désélection d'un pokémon pour la comparaison
+   * @param {string} pokemonId - ID du pokémon à sélectionner/désélectionner
+   */
   const handleSelectPokemon = (pokemonId) => {
     setSelectedPokemons(prev => {
       if (prev.includes(pokemonId)) {
@@ -40,6 +52,10 @@ function Home() {
     })
   }
 
+  /**
+   * Gère la navigation vers la page de comparaison
+   * Vérifie que deux pokémons sont sélectionnés
+   */
   const handleCompare = () => {
     if (selectedPokemons.length !== 2) {
       alert("Veuillez sélectionner exactement 2 Pokémon à comparer")
@@ -57,6 +73,9 @@ function Home() {
     navigate('/compare', { state: { pokemon1, pokemon2 } })
   }
 
+  /**
+   * Gère la déconnexion de l'utilisateur
+   */
   const handleLogout = () => {
     localStorage.removeItem('token')
     navigate('/')
@@ -64,6 +83,7 @@ function Home() {
 
   return (
     <div className="app-container">
+      {/* Barre d'outils en haut à droite */}
       <div style={{ 
         display: 'flex', 
         flexDirection: 'column',
@@ -72,6 +92,7 @@ function Home() {
         top: '15px',
         right: '15px'
       }}>
+        {/* Bouton pour accéder aux favoris */}
         <button 
           onClick={() => navigate('/favorites')}
           style={{
@@ -88,6 +109,8 @@ function Home() {
         >
           Mon Pokédex
         </button>
+
+        {/* Bouton de comparaison (visible uniquement si 2 pokémons sont sélectionnés) */}
         {selectedPokemons.length === 2 && (
           <button 
             onClick={handleCompare}
@@ -106,6 +129,8 @@ function Home() {
             Comparer
           </button>
         )}
+
+        {/* Bouton de déconnexion */}
         <button 
           onClick={handleLogout}
           style={{
@@ -132,9 +157,14 @@ function Home() {
           Déconnexion
         </button>
       </div>
+
+      {/* Barre de recherche */}
       <SearchBar types={types} setTypes={setTypes} search={search} setSearch={setSearch} />
+
+      {/* Liste des pokémons filtrés */}
       <div className="pokemon-list">
         {pokemons.map((pokemon) => {
+          // Filtrage par type et nom
           const isTypeIncluded = types.length === 0 || types.every(type => pokemon.type.includes(type))
           const isNameIncluded = search === "" || pokemon.name.french.toLowerCase().includes(search.toLowerCase())
 

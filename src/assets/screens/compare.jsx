@@ -1,12 +1,19 @@
+/**
+ * Compare.jsx - Page de comparaison de Pokémon
+ * Permet de comparer les statistiques de deux Pokémon sélectionnés
+ */
+
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import './compare.css';
 
 const Compare = () => {
+    // Récupération des Pokémon à comparer depuis l'état de navigation
     const location = useLocation();
     const navigate = useNavigate();
     const { pokemon1, pokemon2 } = location.state || {};
-    console.log('pokemon1', pokemon1);
+
+    // Vérification de la présence des Pokémon à comparer
     if (!pokemon1 || !pokemon2) {
         return (
             <div className="compare-container">
@@ -17,10 +24,21 @@ const Compare = () => {
         );
     }
 
+    /**
+     * Retourne le style pour mettre en évidence la meilleure statistique
+     * @param {number} stat1 - Statistique du premier Pokémon
+     * @param {number} stat2 - Statistique du deuxième Pokémon
+     * @returns {Object} - Style CSS
+     */
     const getStatStyle = (stat1, stat2) => {
         return stat1 > stat2 ? { color: '#4CAF50' } : {};
     };
 
+    /**
+     * Retourne la classe CSS correspondant au type du Pokémon
+     * @param {string} type - Type du Pokémon
+     * @returns {string} - Classe CSS
+     */
     const getTypeClass = (type) => {
         return `type-name type-${type.toLowerCase()}`;
     };
@@ -29,6 +47,7 @@ const Compare = () => {
         <div className="compare-container">
             <h1>Comparaison de Pokémon</h1>
             <div className="compare-pokemons">
+                {/* Premier Pokémon */}
                 <div className="pokemon-card">
                     <h2>{pokemon1.name.french}</h2>
                     <img src={pokemon1.image} alt={pokemon1.name.french} />
@@ -54,7 +73,11 @@ const Compare = () => {
                         </button>
                     </div>
                 </div>
+
+                {/* Séparateur VS */}
                 <div className="vs">VS</div>
+
+                {/* Deuxième Pokémon */}
                 <div className="pokemon-card">
                     <h2>{pokemon2.name.french}</h2>
                     <img src={pokemon2.image} alt={pokemon2.name.french} />
