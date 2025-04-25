@@ -64,54 +64,75 @@ function Home() {
 
   return (
     <div className="app-container">
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-        <div style={{ display: 'flex', gap: '10px' }}>
+      <div style={{ 
+        display: 'flex', 
+        flexDirection: 'column',
+        gap: '10px',
+        position: 'absolute',
+        top: '15px',
+        right: '15px'
+      }}>
+        <button 
+          onClick={() => navigate('/favorites')}
+          style={{
+            padding: '8px 15px',
+            backgroundColor: '#ffd700',
+            border: 'none',
+            color: '#333',
+            cursor: 'pointer',
+            borderRadius: '4px',
+            fontWeight: 'bold',
+            fontSize: '16px',
+            width: '150px'
+          }}
+        >
+          Mon Pokédex
+        </button>
+        {selectedPokemons.length === 2 && (
           <button 
-            onClick={() => navigate('/favorites')}
+            onClick={handleCompare}
             style={{
-              padding: '5px 10px',
-              backgroundColor: '#ffd700',
+              padding: '8px 15px',
+              backgroundColor: '#4CAF50',
               border: 'none',
-              color: '#333',
+              color: 'white',
               cursor: 'pointer',
-              borderRadius: '4px'
+              borderRadius: '4px',
+              fontWeight: 'bold',
+              fontSize: '16px',
+              width: '150px'
             }}
           >
-            Favoris
+            Comparer
           </button>
-          {selectedPokemons.length === 2 && (
-            <button 
-              onClick={handleCompare}
-              style={{
-                padding: '5px 10px',
-                backgroundColor: '#4CAF50',
-                border: 'none',
-                color: 'white',
-                cursor: 'pointer',
-                borderRadius: '4px'
-              }}
-            >
-              Comparer
-            </button>
-          )}
-        </div>
+        )}
         <button 
           onClick={handleLogout}
           style={{
-            padding: '5px 10px',
+            padding: '8px 15px',
             backgroundColor: '#ff4444',
             border: 'none',
             color: 'white',
             cursor: 'pointer',
-            borderRadius: '4px'
+            borderRadius: '4px',
+            fontWeight: 'bold',
+            fontSize: '16px',
+            width: '150px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px'
           }}
         >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
           Déconnexion
         </button>
       </div>
-
       <SearchBar types={types} setTypes={setTypes} search={search} setSearch={setSearch} />
-
       <div className="pokemon-list">
         {pokemons.map((pokemon) => {
           const isTypeIncluded = types.length === 0 || types.every(type => pokemon.type.includes(type))
