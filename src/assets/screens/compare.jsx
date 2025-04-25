@@ -6,7 +6,7 @@ const Compare = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { pokemon1, pokemon2 } = location.state || {};
-
+    console.log('pokemon1', pokemon1);
     if (!pokemon1 || !pokemon2) {
         return (
             <div className="compare-container">
@@ -18,7 +18,7 @@ const Compare = () => {
     }
 
     const getStatStyle = (stat1, stat2) => {
-        return stat1 > stat2 ? { color: '#4CAF50' } : {};
+        return stat1 >= stat2 ? { color: '#4CAF50' } : {};
     };
 
     return (
@@ -32,6 +32,9 @@ const Compare = () => {
                         <p style={getStatStyle(pokemon1.base.HP, pokemon2.base.HP)}>HP: {pokemon1.base.HP}</p>
                         <p style={getStatStyle(pokemon1.base.Attack, pokemon2.base.Attack)}>Attack: {pokemon1.base.Attack}</p>
                         <p style={getStatStyle(pokemon1.base.Defense, pokemon2.base.Defense)}>Defense: {pokemon1.base.Defense}</p>
+                        <p style={getStatStyle(pokemon1.base.Speed, pokemon2.base.Speed)}>Speed: {pokemon1.base.Speed}</p>
+                        <p style={getStatStyle(pokemon1.base["Sp. Attack"], pokemon2.base["Sp. Attack"])}>Sp. Attack: {pokemon1.base["Sp. Attack"]}</p>
+                        <p style={getStatStyle(pokemon1.base["Sp. Defense"], pokemon2.base["Sp. Defense"])}>Sp. Defense: {pokemon1.base["Sp. Defense"]}</p>
                     </div>
                 </div>
                 <div className="vs">VS</div>
@@ -42,6 +45,9 @@ const Compare = () => {
                         <p style={getStatStyle(pokemon2.base.HP, pokemon1.base.HP)}>HP: {pokemon2.base.HP}</p>
                         <p style={getStatStyle(pokemon2.base.Attack, pokemon1.base.Attack)}>Attack: {pokemon2.base.Attack}</p>
                         <p style={getStatStyle(pokemon2.base.Defense, pokemon1.base.Defense)}>Defense: {pokemon2.base.Defense}</p>
+                        <p style={getStatStyle(pokemon1.base.Speed, pokemon2.base.Speed)}>Speed: {pokemon1.base.Speed}</p>
+                        <p style={getStatStyle(pokemon1.base["Sp. Attack"], pokemon2.base["Sp. Attack"])}>Sp. Attack: {pokemon1.base["Sp. Attack"]}</p>
+                        <p style={getStatStyle(pokemon1.base["Sp. Defense"], pokemon2.base["Sp. Defense"])}>Sp. Defense: {pokemon1.base["Sp. Defense"]}</p>
                     </div>
                 </div>
             </div>
