@@ -76,6 +76,18 @@ const Pokemon = () => {
 
     return (
         <div className="pokemon-detail-container">
+            <div className="pokemon-header">
+                <button 
+                    onClick={() => navigate('/home')}
+                    className="back-button"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M19 12H5"></path>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Retour
+                </button>
+            </div>
             <div className="pokemon-image-container">
                 <img src={pokemon.image} alt={pokemon.name?.french} className="pokemon-detail-image" />
                 <div className="pokemon-actions">

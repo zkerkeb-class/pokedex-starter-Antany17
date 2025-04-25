@@ -23,15 +23,15 @@ const Favorites = () => {
     const handleRemoveFromFavorites = async (pokemonId) => {
         if (user) {
             await removeFromFavorites(user.uid, pokemonId);
-            setFavorites(favorites.filter(p => p.id !== pokemonId));
+            setFavorites(favorites.filter(p => p._id !== pokemonId));
             setSelectedPokemons(selectedPokemons.filter(id => id !== pokemonId));
         }
     };
 
     const handleCompare = () => {
         if (selectedPokemons.length === 2) {
-            const pokemon1 = favorites.find(p => p.id === selectedPokemons[0]);
-            const pokemon2 = favorites.find(p => p.id === selectedPokemons[1]);
+            const pokemon1 = favorites.find(p => p._id === selectedPokemons[0]);
+            const pokemon2 = favorites.find(p => p._id === selectedPokemons[1]);
             navigate('/compare', { state: { pokemon1, pokemon2 } });
         }
     };
@@ -67,8 +67,8 @@ const Favorites = () => {
             <div className="favorites-grid">
                 {favorites.map((pokemon) => (
                     <div 
-                        key={pokemon.id} 
-                        className={`pokemon-card ${selectedPokemons.includes(pokemon.id) ? 'selected' : ''}`}
+                        key={pokemon._id} 
+                        className={`pokemon-card ${selectedPokemons.includes(pokemon._id) ? 'selected' : ''}`}
                     >
                         <img src={pokemon.image} alt={pokemon.name.french} />
                         <h3>{pokemon.name.french}</h3>
@@ -82,19 +82,19 @@ const Favorites = () => {
                         <div className="card-actions">
                             <button 
                                 className="select-button"
-                                onClick={() => togglePokemonSelection(pokemon.id)}
+                                onClick={() => togglePokemonSelection(pokemon._id)}
                             >
-                                {selectedPokemons.includes(pokemon.id) ? 'Désélectionner' : 'Sélectionner'}
+                                {selectedPokemons.includes(pokemon._id) ? 'Désélectionner' : 'Sélectionner'}
                             </button>
                             <button 
                                 className="view-button"
-                                onClick={() => navigate(`/pokemon/${pokemon.id}`)}
+                                onClick={() => navigate(`/pokemon/${pokemon._id}`)}
                             >
                                 Voir détails
                             </button>
                             <button 
                                 className="remove-button"
-                                onClick={() => handleRemoveFromFavorites(pokemon.id)}
+                                onClick={() => handleRemoveFromFavorites(pokemon._id)}
                             >
                                 Supprimer
                             </button>
