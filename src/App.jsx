@@ -4,6 +4,7 @@ import Pokemon from './assets/screens/pokemon'
 import Login from './assets/screens/login'
 import Register from './assets/screens/register'
 import Favorites from './pages/favorites'
+import Compare from './assets/screens/compare'
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                 <Route path="/pokemon/:id" element={<Pokemon />} />
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/compare" element={<Compare />} />
             </Routes>
         </Router>
     );

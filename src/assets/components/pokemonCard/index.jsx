@@ -3,7 +3,7 @@ import "./index.css";
 import {useNavigate} from "react-router"
 import FavoriteButton from "../favoriteButton";
 
-const PokemonCard = ({ id,name, types, image, shinyImage, attack, defense, hp }) => {
+const PokemonCard = ({ id, name, types, image, shinyImage, attack, defense, hp, isSelected, onSelect }) => {
   const [currentImage, setCurrentImage] = useState(image);
   const [isShiny, setIsShiny] = useState(false);
   const navigate = useNavigate();
@@ -29,7 +29,15 @@ const PokemonCard = ({ id,name, types, image, shinyImage, attack, defense, hp })
 
   return (
     <div className={`pokemon-card ${isShiny ? 'shiny' : ''}`}>
-      <FavoriteButton id={id} />
+      <div className="card-header">
+        <FavoriteButton id={id} />
+        <input
+          type="checkbox"
+          checked={isSelected}
+          onChange={() => onSelect(id)}
+          className="compare-checkbox"
+        />
+      </div>
       <div className="pokemon-name-container">
         <span className="pokemon-name">{name}</span>
       </div>
