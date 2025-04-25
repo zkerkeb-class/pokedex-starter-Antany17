@@ -19,7 +19,8 @@ const FavoriteButton = ({ id }) => {
         }
       });
       const data = await response.json();
-      setIsFavorite(data.favorites.includes(id));
+      // Vérifier si l'ID du Pokémon est dans la liste des favoris
+      setIsFavorite(data.favorites.some(pokemon => pokemon._id === id));
     } catch (error) {
       console.error('Erreur lors de la vérification des favoris:', error);
     }
