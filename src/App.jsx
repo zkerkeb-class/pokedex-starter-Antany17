@@ -9,7 +9,7 @@ import Pokemon from './assets/screens/pokemon'
 import Login from './assets/screens/login'
 import Register from './assets/screens/register'
 import Favorites from './pages/favorites'
-import Compare from './assets/screens/compare'
+import Compare from './assets/screens/compare/compare'
 
 function App() {
     return (
