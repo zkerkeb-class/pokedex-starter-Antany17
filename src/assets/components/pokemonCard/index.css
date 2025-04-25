@@ -9,6 +9,7 @@
     box-sizing: border-box;
     position: relative;
     gap: 10px;
+    background-color: #1a1a1a;
 }
 
 .pokemon-card.shiny {
@@ -25,6 +26,7 @@
     font-size: 20px;
     font-weight: bold;
     transition: all 0.3s ease;
+    color: white;
 }
 
 .pokemon-name-container{
@@ -53,6 +55,7 @@
 .pokemon-stats-container{
     display: flex;
     flex-direction: column;
+    color: white;
 }
 
 .action-buttons {
