@@ -18,7 +18,11 @@ const Compare = () => {
     }
 
     const getStatStyle = (stat1, stat2) => {
-        return stat1 >= stat2 ? { color: '#4CAF50' } : {};
+        return stat1 > stat2 ? { color: '#4CAF50' } : {};
+    };
+
+    const getTypeClass = (type) => {
+        return `type-name type-${type.toLowerCase()}`;
     };
 
     return (
@@ -28,6 +32,11 @@ const Compare = () => {
                 <div className="pokemon-card">
                     <h2>{pokemon1.name.french}</h2>
                     <img src={pokemon1.image} alt={pokemon1.name.french} />
+                    <div className="pokemon-types">
+                        {pokemon1.type?.map((type) => (
+                            <span key={type} className={getTypeClass(type)}>{type}</span>
+                        ))}
+                    </div>
                     <div className="pokemon-stats">
                         <p style={getStatStyle(pokemon1.base.HP, pokemon2.base.HP)}>HP: {pokemon1.base.HP}</p>
                         <p style={getStatStyle(pokemon1.base.Attack, pokemon2.base.Attack)}>Attack: {pokemon1.base.Attack}</p>
@@ -36,11 +45,24 @@ const Compare = () => {
                         <p style={getStatStyle(pokemon1.base["Sp. Attack"], pokemon2.base["Sp. Attack"])}>Sp. Attack: {pokemon1.base["Sp. Attack"]}</p>
                         <p style={getStatStyle(pokemon1.base["Sp. Defense"], pokemon2.base["Sp. Defense"])}>Sp. Defense: {pokemon1.base["Sp. Defense"]}</p>
                     </div>
+                    <div className="action-buttons">
+                        <button className="action-button shiny-button" onClick={() => navigate(`/pokemon/${pokemon1.id}/shiny`)}>
+                            Voir la version Shiny
+                        </button>
+                        <button className="action-button" onClick={() => navigate(`/pokemon/${pokemon1.id}`)}>
+                            Voir pokemon en détail
+                        </button>
+                    </div>
                 </div>
                 <div className="vs">VS</div>
                 <div className="pokemon-card">
                     <h2>{pokemon2.name.french}</h2>
                     <img src={pokemon2.image} alt={pokemon2.name.french} />
+                    <div className="pokemon-types">
+                        {pokemon2.type?.map((type) => (
+                            <span key={type} className={getTypeClass(type)}>{type}</span>
+                        ))}
+                    </div>
                     <div className="pokemon-stats">
                         <p style={getStatStyle(pokemon2.base.HP, pokemon1.base.HP)}>HP: {pokemon2.base.HP}</p>
                         <p style={getStatStyle(pokemon2.base.Attack, pokemon1.base.Attack)}>Attack: {pokemon2.base.Attack}</p>
@@ -48,6 +70,14 @@ const Compare = () => {
                         <p style={getStatStyle(pokemon1.base.Speed, pokemon2.base.Speed)}>Speed: {pokemon1.base.Speed}</p>
                         <p style={getStatStyle(pokemon1.base["Sp. Attack"], pokemon2.base["Sp. Attack"])}>Sp. Attack: {pokemon1.base["Sp. Attack"]}</p>
                         <p style={getStatStyle(pokemon1.base["Sp. Defense"], pokemon2.base["Sp. Defense"])}>Sp. Defense: {pokemon1.base["Sp. Defense"]}</p>
+                    </div>
+                    <div className="action-buttons">
+                        <button className="action-button shiny-button" onClick={() => navigate(`/pokemon/${pokemon2.id}/shiny`)}>
+                            Voir la version Shiny
+                        </button>
+                        <button className="action-button" onClick={() => navigate(`/pokemon/${pokemon2.id}`)}>
+                            Voir pokemon en détail
+                        </button>
                     </div>
                 </div>
             </div>
