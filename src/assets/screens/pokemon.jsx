@@ -26,7 +26,7 @@ const Pokemon = () => {
         axios.delete(`http://localhost:3000/api/pokemons/${id}`).then(
             (response) => {
                 alert("Pokemon supprimé avec succès")
-                navigate("/")
+                navigate("/home")
             }
         ).catch((error) => {
             alert("Erreur lors de la suppression du pokemon")
