@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import './login.css'
 
-const Login = () => {
+const Register = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
@@ -15,30 +15,17 @@ const Login = () => {
         setLoading(true)
         setError("")
 
-        console.log("Requête envoyée :", { username, password });
-
         try {
-            // Appel à l'API de login
-            const response = await axios.post('http://localhost:3000/api/login', {
+            // Appel à l'API d'inscription
+            await axios.post('http://localhost:3000/api/register', {
                 username,
                 password
             })
 
-            // Stockage du token
-            const token = response.data.token
-            localStorage.setItem('token', token)
-
-            // Configuration d'axios pour les requêtes futures
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-
-            // Récupération du profil
-            const profileResponse = await axios.get('http://localhost:3000/api/profile')
-            localStorage.setItem('user', JSON.stringify(profileResponse.data.user))
-
-            // Redirection vers la page d'accueil
-            navigate('/home')
+            // Redirection vers la page de connexion après inscription réussie
+            navigate('/login')
         } catch (err) {
-            setError(err.response?.data?.message || "Une erreur est survenue")
+            setError(err.response?.data?.message || "Une erreur est survenue lors de l'inscription")
         } finally {
             setLoading(false)
         }
@@ -47,7 +34,7 @@ const Login = () => {
     return (
         <div className="login-container">
             <div className="login-card">
-                <h1>Connexion</h1>
+                <h1>Créer un compte</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="username">Nom d'utilisateur</label>
@@ -71,11 +58,11 @@ const Login = () => {
                     </div>
                     {error && <div className="error-message">{error}</div>}
                     <button type="submit" disabled={loading}>
-                        {loading ? 'Connexion en cours...' : 'Se connecter'}
+                        {loading ? 'Inscription en cours...' : 'S\'inscrire'}
                     </button>
                     <div className="register-link">
-                        <p>Pas encore de compte ?</p>
-                        <button onClick={() => navigate('/register')}>Créer un compte</button>
+                        <p>Déjà un compte ?</p>
+                        <button onClick={() => navigate('/login')}>Se connecter</button>
                     </div>
                 </form>
             </div>
@@ -83,4 +70,4 @@ const Login = () => {
     )
 }
 
-export default Login 
+export default Register 
