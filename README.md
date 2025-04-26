@@ -1,8 +1,26 @@
-# React + Vite
+# Projet Web 2025 : Pokédex
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Description du projet : 
 
-Currently, two official plugins are available:
+- Affichage des pokémons 
+- Filtrage par nom
+- Filtrage par type de pokémons
+- Actions sur chaque pokémons (version Shinny, modification, suppression, ...)
+- Comparaison entre deux pokémons
+- Création d'un pokédex personnalisé avec l'ajout de favoris
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+# Instruction d'installation :
+
+- Aucune instruction supplémentaire par rapport à ceux vu en classe
+
+# Documentation de l'API : 
+
+- Création de routes pour l'ajout, modification et suppression de pokémon
+- Création de routes pour l'ajout et la suppression de favoris.
+- Création de routes pour l'authentifaction (login et register)
+
+
+# Lien de la vidéo youtube : 
+
+- https://youtu.be/jtIDwxr4Sg0
