@@ -1,0 +1,121 @@
+.compare-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 100%;
+}
+
+.compare-pokemons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.pokemon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #1a1a1a;
+    min-width: 250px;
+    color: white;
+}
+
+.pokemon-card img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+.pokemon-types {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.type-name {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    color: white;
+}
+
+.pokemon-stats {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.vs {
+    font-size: 2em;
+    font-weight: bold;
+    color: #ff4444;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.action-button {
+    padding: 8px 16px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.action-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.shiny-button {
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.shiny-button:hover {
+    background-color: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .compare-pokemons {
+        gap: 20px;
+    }
+
+    .pokemon-card {
+        min-width: 200px;
+    }
+
+    .pokemon-card img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .compare-pokemons {
+        flex-direction: column;
+    }
+
+    .pokemon-card {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .vs {
+        margin: 20px 0;
+    }
+} 

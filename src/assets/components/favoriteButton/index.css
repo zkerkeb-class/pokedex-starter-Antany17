@@ -1,0 +1,33 @@
+.favorite-button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  position: absolute;
+  right: 10px;
+  margin-top: -8px;
+}
+
+.favorite-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.favorite-button.favorited {
+  color: #FFD700;
+  border-color: #FFD700;
+}
+
+.favorite-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+} 

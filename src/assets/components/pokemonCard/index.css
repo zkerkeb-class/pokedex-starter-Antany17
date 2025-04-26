@@ -1,0 +1,118 @@
+.pokemon-card{
+    border: 2px solid white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 0px;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    box-sizing: border-box;
+    position: relative;
+    gap: 10px;
+    background-color: #1a1a1a96 !important;
+    color: white;
+}
+
+.pokemon-card.shiny {
+    border: 2px solid #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.pokemon-card.shiny .pokemon-name {
+    color: #FFD700;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.pokemon-name{
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.pokemon-name-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.pokemon-image{
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+.pokemon-types-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.pokemon-types-container > *:not(:first-child) {
+    margin-left: 10px;
+}
+
+.pokemon-stats-container{
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.action-button {
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    background: transparent;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.action-button:active {
+    transform: translateY(0);
+}
+
+.shiny-button {
+    background: transparent;
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.shiny-button:hover {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.5);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.compare-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #FFD700;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
